@@ -1,6 +1,1 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Redirect</title>
-  </head>
-</html>
+This is just meant to redirect to the other webpage.
