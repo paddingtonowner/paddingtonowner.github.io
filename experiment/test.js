@@ -1,3 +1,9 @@
-document.write("<h1>1</h1>");
-document.write("<h6>6</h6>");
-console.log("###Test Info###");
+void setup() {
+            size(400, 400);
+            background(255);
+        }
+
+        void draw() {
+            fill(0);
+            ellipse(mouseX, mouseY, 50, 50);
+        }
