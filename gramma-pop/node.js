@@ -13,13 +13,7 @@ function updateClock() {
 }
 
 function changeButton() {
-    const b = document.getElementById("button");
-    const button = b.textContent;
-    if(button === "Ta-Da!") {
-        b.textContent = "Click to see the time.";
-    } else {
-        b.textContent = "Ta-Da!";
-    }
+    const b = document.getElementById("button").textContent = "Ta-Da!";
 };
 
 document.getElementById("button").addEventListener("click",changeButton);
