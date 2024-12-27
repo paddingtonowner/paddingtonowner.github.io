@@ -22,6 +22,8 @@ function changeButton() {
     }
 };
 
+document.getElementById("button").addEventListener("click",changebutton);
+
 // Update the clock every second
 setInterval(updateClock, 1000);
 
