@@ -5,9 +5,22 @@ function updateClock() {
     const seconds = now.getSeconds().toString().padStart(2, '0');
 
     const currentTime = `${hours}:${minutes}:${seconds}`;
-
-    document.getElementById('clock').textContent = currentTime;
+    if(document.getElementbyId("button").textContent === "Ta-Da!") {
+        document.getElementById('clock').textContent = currentTime;
+    } else {
+        document.getElementById('clock').textContent = '';
+    }
 }
+
+function changeButton() {
+    const b = document.getElementById("button");
+    const button = b.textContent;
+    if(button === "Ta-Da!") {
+        b.textContent = "Click to see the time.";
+    } else {
+        b.textContent = "Ta-Da!";
+    }
+};
 
 // Update the clock every second
 setInterval(updateClock, 1000);
