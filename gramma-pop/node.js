@@ -22,7 +22,7 @@ function changeButton() {
     }
 };
 
-document.getElementById("button").addEventListener("click",changebutton);
+document.getElementById("button").addEventListener("click",changeButton);
 
 // Update the clock every second
 setInterval(updateClock, 1000);
