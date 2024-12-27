@@ -1,0 +1,28 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="paddingtonowner.github.io/experiment/style.css">
+    <title>Processing.js Example</title>
+    <!-- Include Processing.js library from CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/processing.js/1.6.6/processing.min.js"></script>
+</head>
+<body>
+    <!-- Canvas element where the sketch will be drawn -->
+    <canvas id="myCanvas" width=400 height=400></canvas>
+    <!-- Processing.js sketch -->
+    <script type="text/processing" data-processing-target="myCanvas">
+        void setup() {
+            size(400, 400);
+            background(255);
+        }
+
+        void draw() {
+            fill(0);
+            ellipse(mouseX, mouseY, 50, 50);
+        }
+    </script>
+</body>
+</html>
