@@ -5,7 +5,7 @@ function updateClock() {
     const seconds = now.getSeconds().toString().padStart(2, '0');
 
     const currentTime = `${hours}:${minutes}:${seconds}`;
-    if(document.getElementbyId("button").textContent === "Ta-Da!") {
+    if(document.getElementById("button").textContent === "Ta-Da!") {
         document.getElementById('clock').textContent = currentTime;
     } else {
         document.getElementById('clock').textContent = '';
