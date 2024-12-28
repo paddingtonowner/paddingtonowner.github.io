@@ -1,1 +1,1 @@
-$("body").slideDown(1000);
+$("body").hide().slideDown(1000);
