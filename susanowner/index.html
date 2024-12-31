@@ -14,45 +14,43 @@
     <canvas id="myCanvas" width=400 height=400></canvas>
     <!-- Processing.js sketch -->
     <script type="text/processing" data-processing-target="myCanvas">
-        angleMode = "radians";
-
-var Wave = function(amplitude, period, color, determinor) {
-    this.startAngle = 0;
-    this.amplitude = amplitude;
-    this.period = period;
-    this.color = color;
-    this.determinor = determinor;
-    this.angleVel = (TWO_PI / this.period) * 5;
-};
-
-Wave.prototype.update = function() {
-    this.startAngle += TWO_PI / this.period;
-};
-
-Wave.prototype.draw = function() {
-    var yw = this.startAngle;
-    fill(this.color);
-    for(var x=0;x <= width; x += 1) {
-        var y = this.determinor(yw)*this.amplitude;
-        ellipse(x,y,5,5);
-        yw += this.angleVel;
+/*******************
+Click to make a new Winston.
+Each new Winston has a certain speed and direction.
+When a winston moves off the screen, it is moved to the other side.
+The direction is random.
+********************/
+var img = getImage("creatures/Winston");
+var stars = [];
+void draw() {
+    background(255, 0, 0);
+    for(var i in stars) {
+        var s=image(img,stars[i].x,stars[i].y,stars[i].rad,stars[i].rad);
+        rotate(0);
+        stars[i].x += stars[i].xm*5;
+        stars[i].y += stars[i].ym*5;
+        if(stars[i].x > 400){
+            stars[i].x = 0;
+            stars[i].rad += 0.1;
+        } else if(stars[i].x < 0){
+            stars[i].x = 400;
+            stars[i].rad += 0.1;
+        }
+        if(stars[i].y > 400) {
+            stars[i].y = 0;
+            stars[i].rad += 0.1;
+        } else if(stars[i].y < 0) {
+            stars[i].y = 400;
+            stars[i].rad += 0.1;
+        }
     }
 };
-
-var sinW = new Wave(200, 175, color(255, 0, 0, 100), sin);
-var cosW = new Wave(200, 175, color(0, 255, 0, 100), cos);
-var tanW = new Wave(200, 175, color(0, 0, 255, 100), tan);
-
-translate(0, height/2);
-
-void draw() {
-    background(255);
-    sinW.update();
-    sinW.draw();
-    cosW.update();
-    cosW.draw();
-    tanW.update();
-    tanW.draw();
+mouseClicked = function() {
+    var r = 0;
+    while(r === 0) {
+        r = random(-1,2);
+    }
+    stars.push({x:mouseX-50,y:mouseY-50, xm: r, ym: random(-1,2),rad: 70});
 };
     </script>
 </body>
