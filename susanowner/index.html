@@ -14,15 +14,46 @@
     <canvas id="myCanvas" width=400 height=400></canvas>
     <!-- Processing.js sketch -->
     <script type="text/processing" data-processing-target="myCanvas">
-        void setup() {
-            size(800, 800);
-            background(255);
-        }
+        angleMode = "radians";
 
-        void draw() {
-            fill(255,40,40);
-            ellipse(mouseX, mouseY, 50, 50);
-        }
+var Wave = function(amplitude, period, color, determinor) {
+    this.startAngle = 0;
+    this.amplitude = amplitude;
+    this.period = period;
+    this.color = color;
+    this.determinor = determinor;
+    this.angleVel = (TWO_PI / this.period) * 5;
+};
+
+Wave.prototype.update = function() {
+    this.startAngle += TWO_PI / this.period;
+};
+
+Wave.prototype.draw = function() {
+    var yw = this.startAngle;
+    fill(this.color);
+    for(var x=0;x <= width; x += 1) {
+        var y = this.determinor(yw)*this.amplitude;
+        ellipse(x,y,5,5);
+        yw += this.angleVel;
+    }
+};
+
+var sinW = new Wave(200, 175, color(255, 0, 0, 100), sin);
+var cosW = new Wave(200, 175, color(0, 255, 0, 100), cos);
+var tanW = new Wave(200, 175, color(0, 0, 255, 100), tan);
+
+translate(0, height/2);
+
+void draw() {
+    background(255);
+    sinW.update();
+    sinW.draw();
+    cosW.update();
+    cosW.draw();
+    tanW.update();
+    tanW.draw();
+};
     </script>
 </body>
 </html>
