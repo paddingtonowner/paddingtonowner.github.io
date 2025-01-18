@@ -12,20 +12,40 @@
         transform: scale(1.2);
       }
       .hoverbold {
-        display: flex;
         justify-content: center;
         font-weight: normal;
       }
       .hoverbold:hover {
         font-weight: bold;
-      }  
+      }
+      .hovercolor {
+        justify-content: center;
+        font-color: #00FFFF;
+      }
+      .hovercolor:hover {
+        font-color: #FF0000;
+      }
+      .hoverbgcolor {
+        justify-content: center;
+        background-color: #FFFFFF;
+      }
+      .hoverbgcolor:hover {
+        background-color: #00FF00;
+      }
+      .hoverfont {
+        justify-content: center;
+        font-family: monospace;
+      }
+      .hoverfont:hover {
+        font-family: fantasy;
+      }
     </style>
   </head>
   <body>
-    <h1 class = "hoverbig">Happy B-Day, Nana!</h1>
+    <h1 class = "hoverbgcolor">Happy B-Day, Nana!</h1>
     <p class="hoverbold">Watch for something coming in the mail!</p>
     <img class="hoverbig" src='https://paddingtonowner.github.io/gramma-pop/Snowflake.PNG' alt="Snowflake">
-    <p class="hoverbig"><em>I made this with the turtle module on Python</em></p>
-    <p class = "hoverbig">Hover over the elements on the webpage to make them get bigger.</p>
+    <p class="hovercolor"><em>I made this with the turtle module on Python</em></p>
+    <p class = "hoverfont">Hover over the elements on the webpage to make them change.</p>
   </body>
 </html>
