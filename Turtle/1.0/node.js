@@ -1,7 +1,7 @@
 function downloadFiles() {
-    const file1Url = './file1.py';
+    const file1Url = './Turtle_1_point_0.py';
 
-    const file1Name = 'file1.py';
+    const file1Name = 'Turtle_1_point_0.py';
 
     downloadFile(file1Url, file1Name);
 }
