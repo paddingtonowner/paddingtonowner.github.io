@@ -6,7 +6,7 @@ function downloadFiles() {
     //const file2Name = 'file2.py';
 
     downloadFile(file1Url, file1Name);
-    downloadFile(file2Url, file2Name);
+    //downloadFile(file2Url, file2Name);
 }
 
 function downloadFile(url, fileName) {
