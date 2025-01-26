@@ -1,17 +1,10 @@
       .hoverbig {
         display: flex;
         justify-content: center;
-        z-index: 1;
-        position: absolute;
-        top: 0px;
-        left:0px;
       }
       .hoverbold {
         justify-content: center;
         font-weight: normal;
-        z-index:2;
-        position: absolute;
-        left: 0.5em;
       }
       .hoverbold:hover {
         font-weight: bold;
