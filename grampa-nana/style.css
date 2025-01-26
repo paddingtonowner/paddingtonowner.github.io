@@ -1,13 +1,17 @@
       .hoverbig {
         display: flex;
         justify-content: center;
-      }
-      .hoverbig:hover {
-        transform: scale(1.2);
+        z-index: 1;
+        position: absolute;
+        top: 0px;
+        left:0px;
       }
       .hoverbold {
         justify-content: center;
         font-weight: normal;
+        z-index:2;
+        position: absolute;
+        left: 0.5M;
       }
       .hoverbold:hover {
         font-weight: bold;
