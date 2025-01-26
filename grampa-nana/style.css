@@ -2,6 +2,9 @@
         display: flex;
         justify-content: center;
       }
+      .hoverbig:hover {
+            transform: scale(1.2);
+      }
       .hoverbold {
         justify-content: center;
         font-weight: normal;
