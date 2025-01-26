@@ -1,0 +1,35 @@
+      .hoverbig {
+        display: flex;
+        justify-content: center;
+      }
+      .hoverbig:hover {
+        transform: scale(1.2);
+      }
+      .hoverbold {
+        justify-content: center;
+        font-weight: normal;
+      }
+      .hoverbold:hover {
+        font-weight: bold;
+      }
+      .hovercolor {
+        justify-content: center;
+        color: #00FFFF;
+      }
+      .hovercolor:hover {
+        color: #FF0000;
+      }
+      .hoverbgcolor {
+        justify-content: center;
+        background-color: #FFFFFF;
+      }
+      .hoverbgcolor:hover {
+        background-color: #00FF00;
+      }
+      .hoverfont {
+        justify-content: center;
+        font-family: monospace;
+      }
+      .hoverfont:hover {
+        font-family: fantasy;
+      }
