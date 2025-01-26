@@ -11,7 +11,7 @@
         font-weight: normal;
         z-index:2;
         position: absolute;
-        left: 0.5M;
+        left: 0.5em;
       }
       .hoverbold:hover {
         font-weight: bold;
