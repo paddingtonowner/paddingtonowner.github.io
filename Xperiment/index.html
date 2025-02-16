@@ -26,7 +26,7 @@
                 console.log('Loaded Object:', savedObj);
                 var keysListDiv = document.getElementById("list")
                 var keys = Object.keys(savedObj)
-                keysListDiv.innerHTML = `<ul>${keys.map(key => `<li>${key}</li>`).join('')}</ul>`;
+                keysListDiv.innerHTML = `<ul>${keys.map(key => `<li><a href=${key}>${key}</a></li>`).join('')}</ul>`;
             } else {
                 alert('No object found in local storage.');
             }
