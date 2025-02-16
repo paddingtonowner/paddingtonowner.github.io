@@ -1,70 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Save, Load, and Remove List Items</title>
+    <title>Save Object in Local Storage</title>
 </head>
 <body>
-    <h1>Save, Load, and Remove List Items</h1>
-    <ul id="list"></ul>
-    <input type="text" id="itemInput" placeholder="Enter item">
-    <button onclick="addItem()">Add Item</button>
-    <button onclick="saveList()">Save List</button>
-    <button onclick="loadList()">Load List</button>
-
+    <h1>Save Object in Local Storage</h1>
+    <button onclick="saveObject()">Save Object</button>
+    <button onclick="loadObject()">Load Object</button>
     <script>
-        function addItem() {
-            const itemInput = document.getElementById('itemInput');
-            const itemText = itemInput.value;
-            if (itemText === '') return;
+        const obj = {
+            name: "Paddington",
+            age: 5,
+            type: "Bear"
+        };
 
-            const listItem = document.createElement('li');
-            listItem.textContent = itemText;
-
-            const removeButton = document.createElement('button');
-            removeButton.textContent = 'Remove';
-            removeButton.onclick = function() {
-                listItem.remove();
-            };
-
-            listItem.appendChild(removeButton);
-            document.getElementById('list').appendChild(listItem);
-            itemInput.value = '';
+        function saveObject() {
+            localStorage.setItem('myObject', JSON.stringify(obj));
+            alert('Object saved!');
         }
 
-        function saveList() {
-            const listItems = document.querySelectorAll('#list li');
-            const items = [];
-            listItems.forEach(item => {
-                const itemText = item.childNodes[0].textContent;
-                items.push(itemText);
-            });
-            localStorage.setItem('listItems', JSON.stringify(items));
-            alert('List saved!');
-        }
-
-        function loadList() {
-            const items = JSON.parse(localStorage.getItem('listItems'));
-            if (items) {
-                const list = document.getElementById('list');
-                list.innerHTML = '';
-                items.forEach(itemText => {
-                    const listItem = document.createElement('li');
-                    listItem.textContent = itemText;
-
-                    const removeButton = document.createElement('button');
-                    removeButton.textContent = 'Remove';
-                    removeButton.onclick = function() {
-                        listItem.remove();
-                    };
-
-                    listItem.appendChild(removeButton);
-                    list.appendChild(listItem);
-                });
-                alert('List loaded!');
+        function loadObject() {
+            const savedObj = JSON.parse(localStorage.getItem('myObject'));
+            if (savedObj) {
+                console.log('Loaded Object:', savedObj);
+                alert(`Loaded Object: ${JSON.stringify(savedObj)}`);
             } else {
-                alert('No saved list found.');
+                alert('No object found in local storage.');
             }
         }
     </script>
