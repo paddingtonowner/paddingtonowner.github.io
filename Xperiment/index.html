@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Save and Load List</title>
+    <title>Save, Load, and Remove List Items</title>
 </head>
 <body>
-    <h1>Save and Load List</h1>
+    <h1>Save, Load, and Remove List Items</h1>
     <ul id="list"></ul>
     <input type="text" id="itemInput" placeholder="Enter item">
     <button onclick="addItem()">Add Item</button>
@@ -21,6 +21,14 @@
 
             const listItem = document.createElement('li');
             listItem.textContent = itemText;
+
+            const removeButton = document.createElement('button');
+            removeButton.textContent = 'Remove';
+            removeButton.onclick = function() {
+                listItem.remove();
+            };
+
+            listItem.appendChild(removeButton);
             document.getElementById('list').appendChild(listItem);
             itemInput.value = '';
         }
@@ -29,7 +37,8 @@
             const listItems = document.querySelectorAll('#list li');
             const items = [];
             listItems.forEach(item => {
-                items.push(item.textContent);
+                const itemText = item.childNodes[0].textContent;
+                items.push(itemText);
             });
             localStorage.setItem('listItems', JSON.stringify(items));
             alert('List saved!');
@@ -43,6 +52,14 @@
                 items.forEach(itemText => {
                     const listItem = document.createElement('li');
                     listItem.textContent = itemText;
+
+                    const removeButton = document.createElement('button');
+                    removeButton.textContent = 'Remove';
+                    removeButton.onclick = function() {
+                        listItem.remove();
+                    };
+
+                    listItem.appendChild(removeButton);
                     list.appendChild(listItem);
                 });
                 alert('List loaded!');
