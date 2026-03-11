@@ -38,6 +38,7 @@
         let aliens = [];  
         let bullets = [];  
         let score = 0;
+        let dir = 1;
         let gameOver = false;
 
         for (let row = 0; row < 3; row++) {
@@ -92,7 +93,7 @@
         function moveAliens() {
             let moveDown = false;
             aliens.forEach(alien => {
-                alien.x += 1;
+                alien.x += let dir;
                 if (alien.x + alien.width > canvas.width || alien.x < 0) {
                     moveDown = true;
                 }
@@ -100,6 +101,7 @@
             if (moveDown) {
                 aliens.forEach(alien => alien.y += 10);
                 aliens.forEach(alien => alien.x -= 1);
+                let dir *= -1;
             }
             if (aliens.some(alien => alien.y + alien.height >= canvas.height)) {
                 gameOver = true;
