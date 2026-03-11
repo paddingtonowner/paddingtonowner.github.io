@@ -1,14 +1,124 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Download Turtle</title>
-  </head>
-  <body>
-    <h1>Download Turtle</h1>
-    <p>Turtle is a new 'application/programming interface'. 
-    It's not really, it's just a Python file. 
-      Once you have downloaded it, run it to see the interface.
-    </p>
-    <a href="./1.0/index.html>Latest turtle release</a>
-  </body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space Invaders</title>
+    <style>
+        body { margin: 0; overflow: hidden; }
+        canvas { background: black; display: block; margin: auto; }
+        .game-over { color: white; font-size: 48px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); display: none; }
+    </style>
+</head>
+<body>
+    <canvas id="gameCanvas"></canvas>
+    <div class="game-over" id="gameOver">Game Over!</div>
+    <script>
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = 480;
+        canvas.height = 320;
+
+        const shipWidth = 40;
+        const shipHeight = 20;
+        const alienWidth = 40;
+        const alienHeight = 20;
+        const bulletWidth = 5;
+        const bulletHeight = 10;
+
+        const ship = { x: canvas.width / 2 - shipWidth / 2, y: canvas.height - shipHeight - 10, width: shipWidth, height: shipHeight };
+        let aliens = [];  
+        let bullets = [];  
+        let score = 0;
+        let gameOver = false;
+
+        for (let row = 0; row < 3; row++) {
+            for (let col = 0; col < 10; col++) {
+                aliens.push({ x: col * (alienWidth + 20), y: row * (alienHeight + 20), width: alienWidth, height: alienHeight });
+            }
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (gameOver) return;
+            if (e.key === 'ArrowLeft' && ship.x > 0) {
+                ship.x -= 15;
+            } else if (e.key === 'ArrowRight' && ship.x < canvas.width - shipWidth) {
+                ship.x += 15;
+            } else if (e.key === ' ') {
+                bullets.push({ x: ship.x + shipWidth / 2 - bulletWidth / 2, y: canvas.height - shipHeight - 10 });
+            }
+        });
+
+        function update() {
+            if (gameOver) return;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drawAliens();
+            drawShip();
+            drawBullets();
+            checkCollisions();
+            moveAliens();
+            requestAnimationFrame(update);
+        }
+
+        function drawShip() {
+            ctx.fillStyle = 'white';
+            ctx.fillRect(ship.x, ship.y, ship.width, ship.height);
+        }
+
+        function drawAliens() {
+            ctx.fillStyle = 'green';
+            aliens.forEach(alien => {
+                ctx.fillRect(alien.x, alien.y, alien.width, alien.height);
+            });
+        }
+
+        function drawBullets() {
+            ctx.fillStyle = 'red';
+            bullets.forEach(bullet => {
+                ctx.fillRect(bullet.x, bullet.y, bulletWidth, bulletHeight);
+            });
+            bullets = bullets.filter(bullet => bullet.y > 0);
+            bullets.forEach(bullet => bullet.y -= 5);
+        }
+
+        function moveAliens() {
+            let moveDown = false;
+            aliens.forEach(alien => {
+                alien.x += 1;
+                if (alien.x + alien.width > canvas.width || alien.x < 0) {
+                    moveDown = true;
+                }
+            });
+            if (moveDown) {
+                aliens.forEach(alien => alien.y += 10);
+                aliens.forEach(alien => alien.x -= 1);
+            }
+            if (aliens.some(alien => alien.y + alien.height >= canvas.height)) {
+                gameOver = true;
+                document.getElementById('gameOver').style.display = 'block';
+            }
+        }
+
+        function checkCollisions() {
+            bullets.forEach((bullet, bulletIndex) => {
+                aliens.forEach((alien, alienIndex) => {
+                    if (bullet.x < alien.x + alien.width &&
+                        bullet.x + bulletWidth > alien.x &&
+                        bullet.y < alien.y + alien.height &&
+                        bullet.y + bulletHeight > alien.y) {
+                        aliens.splice(alienIndex, 1);
+                        bullets.splice(bulletIndex, 1);
+                        score += 10;
+                    }
+                });
+            });
+            if (aliens.length === 0) {
+                gameOver = true;
+                alert('You Win!');
+            }
+        }
+
+        update();
+    </script>
+</body>
 </html>
