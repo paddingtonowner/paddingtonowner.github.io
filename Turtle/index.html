@@ -90,24 +90,19 @@
             bullets.forEach(bullet => bullet.y -= 5);
         }
 
-        function moveAliens() {
-            let moveDown = false;
-            aliens.forEach(alien => {
-                alien.x += dir;
-                if (alien.x + alien.width > canvas.width || alien.x < 0) {
-                    moveDown = true;
-                }
-            });
-            if (moveDown) {
-                aliens.forEach(alien => alien.y += 10);
-                aliens.forEach(alien => alien.x -= 1);
-                let dir *= -1;
-            }
-            if (aliens.some(alien => alien.y + alien.height >= canvas.height)) {
-                gameOver = true;
-                document.getElementById('gameOver').style.display = 'block';
-            }
+function moveAliens() {
+    for (let i = 0; i < alienArray.length; i++) {
+        alienArray[i].x += (isMovingRight ? 1 : -1); // Move aliens right or left
+    }
+    // Check for edge collisions
+    const hitEdge = alienArray.some(alien => alien.x < 0 || alien.x > canvasWidth);
+    if (hitEdge) {
+        isMovingRight = !isMovingRight; // Toggle direction
+        for (let alien of alienArray) {
+            alien.y += alienDrop; // Move down
         }
+    }
+}
 
         function checkCollisions() {
             bullets.forEach((bullet, bulletIndex) => {
