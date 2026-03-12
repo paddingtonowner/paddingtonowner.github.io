@@ -91,14 +91,14 @@
         }
 
 function moveAliens() {
-    for (let i = 0; i < alienArray.length; i++) {
-        alienArray[i].x += (isMovingRight ? 1 : -1); // Move aliens right or left
+    for (let i = 0; i < aliens.length; i++) {
+        aliens[i].x += (isMovingRight ? 1 : -1); // Move aliens right or left
     }
     // Check for edge collisions
-    const hitEdge = alienArray.some(alien => alien.x < 0 || alien.x > canvasWidth);
+    const hitEdge = aliens.some(alien => alien.x < 0 || alien.x > canvasWidth);
     if (hitEdge) {
         isMovingRight = !isMovingRight; // Toggle direction
-        for (let alien of alienArray) {
+        for (let alien of aliens) {
             alien.y += alienDrop; // Move down
         }
     }
